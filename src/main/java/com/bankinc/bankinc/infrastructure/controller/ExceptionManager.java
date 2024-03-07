@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionManager {
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<String> businessException(Exception e){
+    public ResponseEntity<String> businessException(RuntimeException e){
         return  new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
