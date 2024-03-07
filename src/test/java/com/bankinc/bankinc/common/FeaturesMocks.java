@@ -2,8 +2,12 @@ package com.bankinc.bankinc.common;
 
 import com.bankinc.bankinc.domain.model.card.BalanceManager;
 import com.bankinc.bankinc.domain.model.card.Card;
+import com.bankinc.bankinc.domain.model.transaction.InvalidatedTransaction;
+import com.bankinc.bankinc.domain.model.transaction.SaveTransaction;
+import com.bankinc.bankinc.domain.model.transaction.Transaction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class FeaturesMocks {
 
@@ -23,8 +27,33 @@ public class FeaturesMocks {
             .build();
 
 
+    public static final SaveTransaction SAVE_TRANSACTION = SaveTransaction.builder()
+            .transactionId("1020308090")
+            .cardId(CARD.getCardId())
+            .price(60.0)
+            .build();
+
+    public static final Transaction TRANSACTION = Transaction.builder()
+            .transactionId(SAVE_TRANSACTION.getTransactionId())
+            .cardId(CARD.getCardId())
+            .transactionDate(LocalDateTime.now())
+            .price(60.0)
+            .isInvalidated(Boolean.FALSE)
+            .build();
+
+
+    public static final InvalidatedTransaction INVALIDATED_TRANSACTION = InvalidatedTransaction
+            .builder()
+            .transactionId(TRANSACTION.getTransactionId())
+            .cardId(CARD.getCardId())
+            .build();
+
+
     public static final String SUCCESS_MSG = "SUCCESS";
 
     public static final String CARD_IS_EXIST_MSG = "The card already exist";
+
+    public static final String INVALIDATED_TRANSACTION_MSG = "Transaction was invalidated";
+
 
 }
