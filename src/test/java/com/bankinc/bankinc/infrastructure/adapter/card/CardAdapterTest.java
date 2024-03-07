@@ -1,4 +1,4 @@
-package com.bankinc.bankinc.infrastructure.card;
+package com.bankinc.bankinc.infrastructure.adapter.card;
 
 import com.bankinc.bankinc.domain.model.card.Card;
 import com.bankinc.bankinc.infrastructure.adapter.cardadapter.CardAdapter;

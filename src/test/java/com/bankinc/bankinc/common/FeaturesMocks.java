@@ -6,6 +6,7 @@ import com.bankinc.bankinc.domain.model.transaction.InvalidatedTransaction;
 import com.bankinc.bankinc.domain.model.transaction.SaveTransaction;
 import com.bankinc.bankinc.domain.model.transaction.Transaction;
 import com.bankinc.bankinc.infrastructure.adapter.cardadapter.model.CardDTO;
+import com.bankinc.bankinc.infrastructure.adapter.transactionadapter.model.TransactionDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -57,6 +58,16 @@ public class FeaturesMocks {
             .expirationDate(LocalDate.now())
             .isActive(Boolean.TRUE)
             .build();
+
+    public static final TransactionDTO TRANSACTION_DTO = TransactionDTO.builder()
+            .transactionId(SAVE_TRANSACTION.getTransactionId())
+            .cardId(CARD.getCardId())
+            .transactionDate(LocalDateTime.now())
+            .price(60.0)
+            .isInvalidated(Boolean.FALSE)
+            .build();
+
+
 
 
 
