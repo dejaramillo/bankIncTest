@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/transaction/")
 public class TransactionController {
 
     private final TransactionManager transactionManager;
@@ -24,7 +24,7 @@ public class TransactionController {
         this.transactionManager = transactionManager;
     }
 
-    @GetMapping("/transaction/{transactionId}")
+    @GetMapping("{transactionId}")
     public Mono<ResponseEntity<ResponseDTO>> getTransaction(@PathVariable String transactionId) {
         return transactionManager.getTransactionById(transactionId)
                 .map(transaction -> ResponseEntity.ok().body(
@@ -36,7 +36,7 @@ public class TransactionController {
     }
 
 
-    @PostMapping("/transaction/purchase")
+    @PostMapping("purchase")
     public Mono<ResponseEntity<ResponseDTO>> saveTransaction(@RequestBody SaveTransactionDTO saveTransactionDTO){
         if (IdValidator.idSizeValidator(saveTransactionDTO.getCardId(), IdValidator.CARD_ID_SIZE)){
             return transactionManager.saveCardTransaction(CommonMapper.mapSaveTransactionToModel(saveTransactionDTO))
@@ -52,7 +52,7 @@ public class TransactionController {
 
     }
 
-    @PostMapping("/transaction/anulation")
+    @PostMapping("anulation")
     public Mono<ResponseEntity<ResponseDTO>> invalidatedTransaction(@RequestBody InvalidatedTransactionDTO
                                                                                 invalidatedTransactionDTO){
         if (IdValidator.idSizeValidator(invalidatedTransactionDTO.getCardId(),

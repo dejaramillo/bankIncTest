@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/card/")
 public class CardController {
 
 
@@ -35,7 +35,7 @@ public class CardController {
     }
 
 
-    @GetMapping("/card/{productId}/number")
+    @GetMapping("{productId}/number")
     public Mono<ResponseEntity<ResponseDTO>> generateCardNumber(@PathVariable String productId){
         if (IdValidator.idSizeValidator(productId, IdValidator.PRODUCT_ID_SIZE)){
             return cardNumberGenerator.numberGenerator(productId)
@@ -50,7 +50,7 @@ public class CardController {
 
     }
 
-    @GetMapping("/card/balance/{cardId}")
+    @GetMapping("balance/{cardId}")
     public Mono<ResponseEntity<ResponseDTO>> checkBalance(@PathVariable String cardId){
         if (IdValidator.idSizeValidator(cardId, IdValidator.CARD_ID_SIZE)){
             return balanceAdministrator.checkBalance(cardId)
@@ -65,7 +65,7 @@ public class CardController {
         return CommonResponses.wrongCardIdResponse();
     }
 
-    @PostMapping("/card/enroll")
+    @PostMapping("enroll")
     public Mono<ResponseEntity<ResponseDTO>> activateCard(@RequestBody ActivateCardDTO activateCardDTO){
         if (IdValidator.idSizeValidator(activateCardDTO.getCardId(), IdValidator.CARD_ID_SIZE)){
             return cardActivator.saveCard(activateCardDTO.getCardId())
@@ -80,7 +80,7 @@ public class CardController {
         return CommonResponses.wrongCardIdResponse();
     }
 
-    @PostMapping("/card/balance")
+    @PostMapping("balance")
     public Mono<ResponseEntity<ResponseDTO>> rechargeBalance(@RequestBody BalanceManagerDTO rechargeBalanceDTO){
         if (IdValidator.idSizeValidator(rechargeBalanceDTO.getCardId(), IdValidator.CARD_ID_SIZE)){
             return balanceAdministrator.rechargeCardBalance(CommonMapper
@@ -97,7 +97,7 @@ public class CardController {
         return CommonResponses.wrongCardIdResponse();
     }
 
-    @DeleteMapping("/card/{cardId}")
+    @DeleteMapping("{cardId}")
     public Mono<ResponseEntity<ResponseDTO>> deleteCard(@PathVariable String cardId){
 
         if (IdValidator.idSizeValidator(cardId, IdValidator.CARD_ID_SIZE)){
