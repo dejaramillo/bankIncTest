@@ -5,6 +5,7 @@ import com.bankinc.bankinc.domain.model.card.Card;
 import com.bankinc.bankinc.domain.model.transaction.InvalidatedTransaction;
 import com.bankinc.bankinc.domain.model.transaction.SaveTransaction;
 import com.bankinc.bankinc.domain.model.transaction.Transaction;
+import com.bankinc.bankinc.infrastructure.adapter.cardadapter.model.CardDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -48,6 +49,16 @@ public class FeaturesMocks {
             .cardId(CARD.getCardId())
             .build();
 
+    public static final CardDTO CARD_DTO = CardDTO.builder()
+            .cardId("1234567894567891")
+            .productId("1234")
+            .customerName("Alex Mendez")
+            .currency(500.0)
+            .expirationDate(LocalDate.now())
+            .isActive(Boolean.TRUE)
+            .build();
+
+
 
     public static final String SUCCESS_MSG = "SUCCESS";
 
@@ -55,5 +66,5 @@ public class FeaturesMocks {
 
     public static final String INVALIDATED_TRANSACTION_MSG = "Transaction was invalidated";
 
-
+    public static final String CARD_CREATED_MSG = "the card has been saved successfully";
 }
